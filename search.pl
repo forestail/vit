@@ -1,6 +1,9 @@
 # Copyright 2012 - 2013, Steve Rader
 # Copyright 2013 - 2016, Scott Kostyshak
 
+use Encode 'decode';
+use Text::Migemo;
+
 sub start_search {
   my $ch = $_[0];
   if ( $search_direction == 1 ) {
@@ -73,6 +76,10 @@ sub start_search {
     beep();
     return;
   }
+
+  my $migemo = Text::Migemo->new('/usr/local/share/migemo/utf-8/migemo-dict');
+  $search_pat = decode('UTF-8', $migemo->query($search_pat));
+
   $refresh_needed = 1;
   if ( ! &do_search('n') ) {
     return;
