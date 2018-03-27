@@ -57,6 +57,15 @@ sub parse_vitrc {
           }
           $nowait = ($configval eq "no");
         }
+        elsif ($configname eq "verbose") {
+          # TODO: more code duplication
+          if (!&sanitycheck_bool($configval)) {
+            print STDERR "ERROR: boolean config variable '$configname' must ".
+                         "be set to 'yes' or 'no'.\n";
+            exit(1);
+          }
+          $verbose = ($configval eq "no" ? 0 : 1);
+        }
       }
     }
     close(IN);

@@ -109,6 +109,7 @@ our $during_try = 0;
 my $burndown = "no";
 my $confirmation = 1;
 my $nowait = undef;
+my $verbose = 1;
 
 require 'args.pl';
 require 'cmdline.pl';

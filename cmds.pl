@@ -116,7 +116,7 @@ sub task_start_stop {
     $feedback_msg = "Started task";
   }
 
-  if ($confirmation) {
+  if ($confirmation && $verbose) {
     $yes = &prompt_y("$prompt task?");
     if ( ! $yes ) {
       &draw_prompt_line('');
